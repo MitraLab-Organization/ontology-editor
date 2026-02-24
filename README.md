@@ -18,7 +18,7 @@ Changes are validated automatically via GitHub Actions and generate OWL files fo
 <!-- STATS_START -->
 📊 **Ontology Statistics**
 ```
-├── Structures: 376
+├── Structures: 382
 ├── Hierarchy depth: 7 levels
 └── Relationships: 89
     ├── Innervated By: 78
@@ -57,8 +57,13 @@ Body
 │   │   ├── Paranasal sinuses (L)
 │   │   └── Paranasal sinuses (R)
 │   ├── Head endocrine and exocrine system
-│   │   ├── Lacrimal gland (L)
-│   │   ├── Lacrimal gland (R)
+│   │   ├── Lacrimal gland
+│   │   │   ├── Extraorbital lacrimal gland (L)
+│   │   │   ├── Extraorbital lacrimal gland (R)
+│   │   │   ├── Harderian gland (L)
+│   │   │   ├── Harderian gland (R)
+│   │   │   ├── Intraorbital lacrimal gland (L)
+│   │   │   └── Intraorbital lacrimal gland (R)
 │   │   ├── Palatal submucosa (L)
 │   │   ├── Palatal submucosa (R)
 │   │   ├── Salivary glands
@@ -246,6 +251,7 @@ Body
 │   │           ├── Lacrimal (R)
 │   │           ├── Nasal (L)
 │   │           ├── Nasal (R)
+│   │           ├── Nasal septum
 │   │           ├── Palatine (L)
 │   │           ├── Palatine (R)
 │   │           ├── Premaxilla (L)
