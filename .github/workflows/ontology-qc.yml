@@ -37,16 +37,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
+      # ODK image uses PEP 668 (no pip install to system Python). Use distro PyYAML or a venv.
       - name: Install PyYAML and generate OWL
         run: |
-          pip install pyyaml
+          apt-get update -qq
+          apt-get install -y -qq python3-yaml
           mkdir -p build
-          python scripts/generate_owl.py --output build/bap-generated.owl
+          python3 scripts/generate_owl.py --output build/bap-generated.owl
 
       - name: ROBOT convert (load and round-trip)
         run: |
