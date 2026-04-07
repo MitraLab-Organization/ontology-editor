@@ -1,7 +1,8 @@
 metadata:
   category: regions
-  description: Major body regions and organ system hierarchy (Human)
-  version: 2.0.0
+  description: Human hand / forelimb atlas — high-level organ systems under Hand; head
+    subsystem detail retained but marked deprecated (out of current scope)
+  version: 2.1.0
   last_modified: '2026-04-07'
   species: Homo sapiens
   ncbi_taxon: '9606'
@@ -13,7 +14,8 @@ structures:
 - id: BAP_0000001
   name: Head
   parent: BAP_0012000
-  definition: Head region of the mouse
+  definition: Head region — detailed subsystem tree out of scope for hand atlas (suppressed)
+  deprecated: true
 - id: BAP_0000002
   name: Neck
   parent: BAP_0012000
@@ -28,30 +30,37 @@ structures:
   name: Head musculoskeletal system
   parent: BAP_0000001
   definition: Musculoskeletal structures of the head including muscles and cranium
+  deprecated: true
 - id: BAP_0020002
   name: Head nervous system
   parent: BAP_0000001
   definition: Neural structures of the head
+  deprecated: true
 - id: BAP_0020003
   name: Sense organs
   parent: BAP_0000001
   definition: Sensory organs and structures of the head
+  deprecated: true
 - id: BAP_0020004
   name: Head vascular system
   parent: BAP_0000001
   definition: Blood vessels and lymphatics of the head
+  deprecated: true
 - id: BAP_0020005
   name: Head endocrine and exocrine system
   parent: BAP_0000001
   definition: Glandular structures of the head
+  deprecated: true
 - id: BAP_0020006
   name: Head cavities and passages
   parent: BAP_0000001
   definition: Anatomical spaces and passages of the head
+  deprecated: true
 - id: BAP_0020007
   name: Head integumentary system
   parent: BAP_0000001
   definition: Skin and external structures of the head
+  deprecated: true
 - id: BAP_0012007
   name: Cranial muscles
   parent: BAP_0020001
@@ -194,6 +203,39 @@ structures:
 - id: BAP_0000004
   name: Forelimb
   parent: BAP_0000006
+  definition: Upper limb (human arm, forearm, wrist, and hand)
+- id: BAP_0023000
+  name: Hand
+  parent: BAP_0000004
+  definition: Distal segment of the forelimb including carpus, metacarpus, and digits
+- id: BAP_0023001
+  name: Hand musculoskeletal system
+  parent: BAP_0023000
+  definition: Bones, joints, and muscles of the hand
+- id: BAP_0023002
+  name: Hand nervous system
+  parent: BAP_0023000
+  definition: Peripheral and intrinsic neural structures of the hand
+- id: BAP_0023003
+  name: Hand sensory structures
+  parent: BAP_0023000
+  definition: Digital and cutaneous sensory end-organs and related structures
+- id: BAP_0023004
+  name: Hand vascular system
+  parent: BAP_0023000
+  definition: Arterial and venous supply and lymphatics of the hand
+- id: BAP_0023005
+  name: Hand endocrine and exocrine system
+  parent: BAP_0023000
+  definition: Glandular structures of the hand (e.g. eccrine units)
+- id: BAP_0023006
+  name: Hand cavities and passages
+  parent: BAP_0023000
+  definition: Synovial spaces, tendon sheaths, and fascial compartments of the hand
+- id: BAP_0023007
+  name: Hand integumentary system
+  parent: BAP_0023000
+  definition: Skin, nails, and subcutaneous tissue of the hand
 - id: BAP_0000011
   name: Tail
   parent: BAP_0000006

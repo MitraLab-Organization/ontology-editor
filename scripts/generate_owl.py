@@ -56,8 +56,8 @@ IAO_DEFINITION = 'http://purl.obolibrary.org/obo/IAO_0000115'
 
 # Ontology metadata
 BASE_IRI = "http://purl.obolibrary.org/obo/bap.owl"
-TITLE = "BAP Mouse Head Atlas"
-DESCRIPTION = "Brain Architecture Project Mouse Head Anatomical Atlas"
+TITLE = "BAP Human Hand Atlas"
+DESCRIPTION = "Brain Architecture Project human hand and forelimb anatomical ontology"
 VERSION = "1.0.0"
 
 
