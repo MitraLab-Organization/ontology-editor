@@ -4,15 +4,25 @@ BAP OWL Generator
 
 Generates OWL/RDF XML files from YAML structure and relationship definitions.
 
+Ontology title/description:
+  * Branch ``main`` → Mouse head atlas (original).
+  * Any other branch (e.g. ``hand``, ``human-hand``) → Human hand atlas.
+  Override: ``--ontology mouse|hand``, or ``--branch NAME`` with ``--ontology auto``.
+
+CI sets ``GITHUB_REF_NAME``; that is used when ``git`` is unavailable.
+
 Usage:
-    python scripts/generate_owl.py --output bap-mousehead.owl
+    python scripts/generate_owl.py --output bap.owl
+    python scripts/generate_owl.py --ontology hand
+    python scripts/generate_owl.py --ontology auto --branch main
 """
 
-import sys
 import argparse
+import os
+import subprocess
+import sys
 from pathlib import Path
-from typing import Dict, List, Optional
-from dataclasses import dataclass
+from typing import Dict, List, Optional, Tuple
 
 import yaml
 
@@ -54,11 +64,59 @@ OBO_RELATIONS = {
 # IAO annotation property
 IAO_DEFINITION = 'http://purl.obolibrary.org/obo/IAO_0000115'
 
-# Ontology metadata
+# Ontology metadata (IRI stable; title/description set per branch — see resolve_ontology_metadata)
 BASE_IRI = "http://purl.obolibrary.org/obo/bap.owl"
-TITLE = "BAP Human Hand Atlas"
-DESCRIPTION = "Brain Architecture Project human hand and forelimb anatomical ontology"
 VERSION = "1.0.0"
+
+MOUSE_HEAD_TITLE = "BAP Mouse Head Atlas"
+MOUSE_HEAD_DESCRIPTION = "Brain Architecture Project Mouse Head Anatomical Atlas"
+HUMAN_HAND_TITLE = "BAP Human Hand Atlas"
+HUMAN_HAND_DESCRIPTION = (
+    "Brain Architecture Project human hand and forelimb anatomical ontology"
+)
+
+
+def detect_git_branch(repo_root: Path) -> str:
+    """Current branch: CI env first, then `git rev-parse`, else main."""
+    for key in ("GITHUB_REF_NAME", "CI_COMMIT_REF_NAME", "GIT_BRANCH"):
+        val = os.environ.get(key)
+        if val:
+            return val.strip()
+    try:
+        r = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+            timeout=10,
+            check=False,
+        )
+        if r.returncode == 0 and r.stdout.strip():
+            return r.stdout.strip()
+    except (OSError, subprocess.SubprocessError):
+        pass
+    return "main"
+
+
+def resolve_ontology_metadata(
+    branch: str,
+    override: Optional[str],
+) -> Tuple[str, str, str]:
+    """
+    Return (title, description, profile_label).
+
+    - override 'mouse' | 'hand' forces profile.
+    - auto: ``main`` → Mouse head atlas; any other branch → Human hand atlas.
+    """
+    if override == "mouse":
+        return MOUSE_HEAD_TITLE, MOUSE_HEAD_DESCRIPTION, "mouse"
+    if override == "hand":
+        return HUMAN_HAND_TITLE, HUMAN_HAND_DESCRIPTION, "hand"
+
+    b = (branch or "main").strip().lower()
+    if b == "main":
+        return MOUSE_HEAD_TITLE, MOUSE_HEAD_DESCRIPTION, "mouse"
+    return HUMAN_HAND_TITLE, HUMAN_HAND_DESCRIPTION, "hand"
 
 
 # ============================================================================
@@ -129,7 +187,13 @@ def get_relation_iri(predicate: str) -> str:
     return OBO_RELATIONS.get(predicate, f"{BASE_IRI}#{predicate}")
 
 
-def generate_owl(structures: Dict[str, dict], relationships: List[dict]) -> str:
+def generate_owl(
+    structures: Dict[str, dict],
+    relationships: List[dict],
+    *,
+    title: str,
+    description: str,
+) -> str:
     """Generate complete OWL/RDF XML document."""
     lines = []
     
@@ -145,8 +209,8 @@ def generate_owl(structures: Dict[str, dict], relationships: List[dict]) -> str:
     
     # Ontology metadata
     lines.append(f'    <owl:Ontology rdf:about="{BASE_IRI}">')
-    lines.append(f'        <dcterms:title>{escape_xml(TITLE)}</dcterms:title>')
-    lines.append(f'        <dcterms:description>{escape_xml(DESCRIPTION)}</dcterms:description>')
+    lines.append(f'        <dcterms:title>{escape_xml(title)}</dcterms:title>')
+    lines.append(f'        <dcterms:description>{escape_xml(description)}</dcterms:description>')
     lines.append(f'        <owl:versionInfo>{VERSION}</owl:versionInfo>')
     lines.append('        <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>')
     lines.append('    </owl:Ontology>')
@@ -242,7 +306,23 @@ def main():
     parser = argparse.ArgumentParser(description="Generate OWL from YAML definitions")
     parser.add_argument("--output", "-o", default="bap-mousehead.owl", help="Output file path")
     parser.add_argument("--validate", "-v", action="store_true", help="Validate XML output")
+    parser.add_argument(
+        "--ontology",
+        choices=("auto", "mouse", "hand"),
+        default="auto",
+        help="Ontology title/description: auto from branch (main=Mouse head, else Human hand), or force mouse/hand",
+    )
+    parser.add_argument(
+        "--branch",
+        default=None,
+        help="Override branch name for --ontology auto (default: detect from git or CI)",
+    )
     args = parser.parse_args()
+
+    branch = args.branch if args.branch else detect_git_branch(ROOT_DIR)
+    override = None if args.ontology == "auto" else args.ontology
+    title, description, profile = resolve_ontology_metadata(branch, override)
+    print(f"Branch: {branch!r}  Profile: {profile}  Title: {title}")
     
     print("Loading structures...")
     structures = load_all_structures()
@@ -253,7 +333,7 @@ def main():
     print(f"  Loaded {len(relationships)} relationships")
     
     print("Generating OWL...")
-    owl_content = generate_owl(structures, relationships)
+    owl_content = generate_owl(structures, relationships, title=title, description=description)
     
     # Validate XML if requested
     if args.validate:
