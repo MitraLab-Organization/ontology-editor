@@ -1,0 +1,57 @@
+# Ontology QC with ODK/ROBOT (same stack as typical ODK Make pipelines).
+# This repo has no src/ontology Makefile; we generate OWL from YAML then run ROBOT.
+#
+# Checks:
+#   1) robot convert — ontology loads and serializes (parse / structural sanity)
+#   2) robot validate-profile DL — OWL 2 DL profile (typical target for reasoning tools)
+
+name: Ontology QC
+
+on:
+  push:
+    branches: [main, hand]
+    paths:
+      - "structures/**"
+      - "relationships/**"
+      - "scripts/generate_owl.py"
+      - ".github/workflows/ontology-qc.yml"
+  pull_request:
+    branches: [main, hand]
+    paths:
+      - "structures/**"
+      - "relationships/**"
+      - "scripts/generate_owl.py"
+      - ".github/workflows/ontology-qc.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ontology_qc:
+    runs-on: ubuntu-latest
+    container:
+      image: obolibrary/odkfull:v1.6
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyYAML and generate OWL
+        run: |
+          pip install pyyaml
+          mkdir -p build
+          python scripts/generate_owl.py --output build/bap-generated.owl
+
+      - name: ROBOT convert (load and round-trip)
+        run: |
+          robot convert --input build/bap-generated.owl --output build/bap-generated.nt
+
+      - name: ROBOT validate-profile (OWL 2 DL)
+        run: |
+          robot validate-profile --profile DL --input build/bap-generated.owl
