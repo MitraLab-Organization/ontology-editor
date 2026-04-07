@@ -1,16 +1,10 @@
-# BAP Blood Vessels
-# Updated to align with organ system hierarchy
-
 metadata:
   category: vessels
-  description: Arteries of the mouse head region
-  version: "2.0.0"
-  last_modified: "2026-01-08"
-
+  description: Arteries of the mouse head region (Human)
+  version: 2.0.0
+  last_modified: '2026-04-07'
+  species: Homo sapiens
 structures:
-  # ============================================================================
-  # ARTERIES - Under Head arteries (BAP_0020401)
-  # ============================================================================
 - id: BAP_0021718
   name: Head veins (L)
   parent: BAP_0020004

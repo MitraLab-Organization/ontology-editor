@@ -1,16 +1,10 @@
-# BAP Nerves
-# Exported from groundtruth database - matches existing data exactly
-
 metadata:
   category: nerves
-  description: Cranial nerves of the mouse head
-  version: "1.0.0"
-  last_modified: "2026-01-08"
-
+  description: Cranial nerves of the mouse head (Human)
+  version: 1.0.0
+  last_modified: '2026-04-07'
+  species: Homo sapiens
 structures:
-  # ============================================================================
-  # CRANIAL NERVES
-  # ============================================================================
 - id: BAP_0021732
   name: Cervical nerves (L)
   parent: BAP_0021201

@@ -9,8 +9,16 @@ Usage:
                                        --ncbi 9483 \
                                        --id-start 1000000
 
+By default (full base):
+- Copies structures/body_regions.yaml from this repo (full organ-system hierarchy)
+- Copies muscles, nerves, vessels, skeletal YAML from this repo so parent IDs referenced from body_regions exist
+- Writes structures/brain.yaml with metadata only and no structures (fill via import_brain_nomenclature.py)
+- Creates empty relationship files
+
+Use --minimal-base for the old 4-node scaffold only (Body, Head, Neck, Trunk) and --id-start for that mode.
+
 This will:
-1. Clear existing structure data
+1. Clear existing structure data (overwrites structure YAMLs listed below)
 2. Create base structure files with species info
 3. Update README and documentation
 4. Configure OWL generation for the species
@@ -21,6 +29,7 @@ import yaml
 import re
 from pathlib import Path
 from datetime import date
+from typing import Optional
 
 
 SPECIES_ID_RANGES = {
@@ -112,6 +121,73 @@ def create_empty_relationships(rel_type: str, species: str, scientific: str):
         },
         'relationships': []
     }
+
+
+def create_empty_brain(species: str, scientific: str):
+    """Brain region file with no structures — same template as full ontology minus detailed brain tree."""
+    return {
+        'metadata': {
+            'category': 'brain',
+            'description': (
+                f'{species} brain structures — populate with '
+                f'scripts/import_brain_nomenclature.py or edit manually'
+            ),
+            'version': '1.0.0',
+            'last_modified': str(date.today()),
+            'species': scientific,
+        },
+        'structures': [],
+    }
+
+
+def load_body_regions_template(repo_root: Path, source: Path) -> dict:
+    """Load body_regions YAML from a file (typically structures/body_regions.yaml in this repo)."""
+    path = source if source.is_absolute() else repo_root / source
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Body regions template not found: {path}\n"
+            "Use --minimal-base to generate a minimal 4-node scaffold without a template file."
+        )
+    with open(path, encoding='utf-8') as f:
+        data = yaml.safe_load(f)
+    if not data or 'structures' not in data:
+        raise ValueError(f"Invalid body regions file (missing structures): {path}")
+    return data
+
+
+def patch_body_regions_metadata(data: dict, species: str, scientific: str, ncbi: str) -> dict:
+    """Set species metadata on copied body_regions; keeps all structure IDs and hierarchy."""
+    meta = data.setdefault('metadata', {})
+    meta['last_modified'] = str(date.today())
+    meta['species'] = scientific
+    meta['ncbi_taxon'] = str(ncbi)
+    meta['description'] = f'Major body regions and organ system hierarchy ({species})'
+    return data
+
+
+def load_structures_yaml(repo_root: Path, relative: Path) -> Optional[dict]:
+    """Load a structures/*.yaml file; return None if missing."""
+    path = relative if relative.is_absolute() else repo_root / relative
+    if not path.exists():
+        return None
+    with open(path, encoding='utf-8') as f:
+        data = yaml.safe_load(f)
+    if not data:
+        return {'metadata': {}, 'structures': []}
+    data.setdefault('structures', [])
+    data.setdefault('metadata', {})
+    return data
+
+
+def patch_category_structures_metadata(data: dict, species: str, scientific: str) -> dict:
+    """Update metadata on copied muscles/nerves/vessels/skeletal; keeps all structure IDs."""
+    meta = data.setdefault('metadata', {})
+    meta['last_modified'] = str(date.today())
+    meta['species'] = scientific
+    desc = meta.get('description') or ''
+    if desc and f'({species})' not in desc:
+        meta['description'] = f'{desc.rstrip()} ({species})'
+    return data
 
 
 def update_readme(species: str, scientific: str, ncbi: str):
@@ -261,16 +337,20 @@ def bootstrap_species(
     common: str,
     ncbi: str,
     id_start: int = None,
-    dry_run: bool = False
+    dry_run: bool = False,
+    minimal_base: bool = False,
+    body_regions_source: Path = None,
 ):
     """Bootstrap a new species ontology."""
     
     # Get repository root
     repo_root = Path(__file__).parent.parent
     
-    # Determine ID range
-    if not id_start:
-        id_start, _ = get_id_range(species, id_start)
+    # ID range only used for --minimal-base
+    if minimal_base:
+        resolved_id_start = id_start if id_start is not None else get_id_range(species, None)[0]
+    else:
+        resolved_id_start = None
     
     print(f"\n{'='*60}")
     print(f"Bootstrapping {species} Ontology")
@@ -278,7 +358,16 @@ def bootstrap_species(
     print(f"Scientific name: {scientific}")
     print(f"Common name: {common}")
     print(f"NCBI Taxon: {ncbi}")
-    print(f"ID range: BAP_{id_start:07d} - BAP_{id_start+999999:07d}")
+    if minimal_base:
+        print(f"Base mode: minimal (4 root regions, custom ID range)")
+        print(f"ID range: BAP_{resolved_id_start:07d} - BAP_{resolved_id_start+999999:07d}")
+    else:
+        print(f"Base mode: full (copy body_regions + muscles/nerves/vessels/skeletal templates, empty brain.yaml)")
+        if id_start is not None:
+            print(
+                "Note: --id-start is ignored in full-base mode "
+                "(template keeps existing BAP IDs). Use --minimal-base to assign a new range."
+            )
     print(f"{'='*60}\n")
     
     if dry_run:
@@ -287,13 +376,44 @@ def bootstrap_species(
     # 1. Create base structure files
     structures_dir = repo_root / "structures"
     
-    files_to_create = {
-        'body_regions.yaml': create_base_structure(species, scientific, ncbi, id_start),
-        'muscles.yaml': create_empty_structure('muscles', species, scientific),
-        'nerves.yaml': create_empty_structure('nerves', species, scientific),
-        'vessels.yaml': create_empty_structure('vessels', species, scientific),
-        'skeletal.yaml': create_empty_structure('bones', species, scientific),
-    }
+    if minimal_base:
+        body_data = create_base_structure(species, scientific, ncbi, resolved_id_start)
+    else:
+        src = body_regions_source or Path("structures/body_regions.yaml")
+        body_data = patch_body_regions_metadata(
+            load_body_regions_template(repo_root, src),
+            species,
+            scientific,
+            ncbi,
+        )
+    
+    if minimal_base:
+        files_to_create = {
+            'body_regions.yaml': body_data,
+            'brain.yaml': create_empty_brain(species, scientific),
+            'muscles.yaml': create_empty_structure('muscles', species, scientific),
+            'nerves.yaml': create_empty_structure('nerves', species, scientific),
+            'vessels.yaml': create_empty_structure('vessels', species, scientific),
+            'skeletal.yaml': create_empty_structure('bones', species, scientific),
+        }
+    else:
+        files_to_create = {
+            'body_regions.yaml': body_data,
+            'brain.yaml': create_empty_brain(species, scientific),
+        }
+        for fname, cat_key in [
+            ('muscles.yaml', 'muscles'),
+            ('nerves.yaml', 'nerves'),
+            ('vessels.yaml', 'vessels'),
+            ('skeletal.yaml', 'bones'),
+        ]:
+            loaded = load_structures_yaml(repo_root, Path('structures') / fname)
+            if loaded is not None and loaded.get('structures'):
+                files_to_create[fname] = patch_category_structures_metadata(
+                    loaded, species, scientific
+                )
+            else:
+                files_to_create[fname] = create_empty_structure(cat_key, species, scientific)
     
     print("Creating structure files:")
     for filename, data in files_to_create.items():
@@ -345,11 +465,13 @@ def bootstrap_species(
     print(f"   git commit -m 'Bootstrap {species} ontology'")
     print("\n2. Validate the structure:")
     print("   python scripts/validate.py")
-    print("\n3. Start adding structures via:")
+    print("\n3. Brain detail: run scripts/import_brain_nomenclature.py when you have nomenclature Excel,")
+    print("   or add structures under structures/brain.yaml manually.")
+    print("\n4. Start adding other structures via:")
     print("   - Issue templates (no code required)")
     print("   - Direct YAML editing")
     print("   - Bulk import scripts")
-    print("\n4. Generate outputs:")
+    print("\n5. Generate outputs:")
     print("   python scripts/generate_tree.py")
     print(f"   python scripts/generate_owl.py --output bap-{species.lower()}.owl")
     print("   python scripts/generate_wiki.py")
@@ -377,9 +499,36 @@ Examples:
     --common "Zebra Finch" \\
     --ncbi 59729 \\
     --id-start 2000000
+
+  # Full body-region tree (default): copies structures/body_regions.yaml, empty brain.yaml
+  python scripts/bootstrap_species.py \\
+    --species "Marmoset" \\
+    --scientific "Callithrix jacchus" \\
+    --ncbi 9483
+
+  # Minimal 4-node scaffold only
+  python scripts/bootstrap_species.py --minimal-base \\
+    --species "Marmoset" --scientific "Callithrix jacchus" --ncbi 9483 --id-start 1000000
         """
     )
     
+    parser.add_argument(
+        '--minimal-base',
+        action='store_true',
+        help=(
+            'Use only Body/Head/Neck/Trunk with --id-start instead of copying the full '
+            'body_regions.yaml template (default copies full base, empty brain).'
+        ),
+    )
+    parser.add_argument(
+        '--body-regions-source',
+        type=Path,
+        default=None,
+        help=(
+            'Path to body_regions YAML to copy in full-base mode '
+            '(default: structures/body_regions.yaml under repo root).'
+        ),
+    )
     parser.add_argument(
         '--species',
         required=True,
@@ -420,7 +569,9 @@ Examples:
         common=common_name,
         ncbi=args.ncbi,
         id_start=args.id_start,
-        dry_run=args.dry_run
+        dry_run=args.dry_run,
+        minimal_base=args.minimal_base,
+        body_regions_source=args.body_regions_source,
     )
 
 

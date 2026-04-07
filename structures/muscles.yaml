@@ -1,8 +1,9 @@
 metadata:
   category: muscles
-  description: Muscles of the mouse head and neck region
+  description: Muscles of the mouse head and neck region (Human)
   version: 1.0.0
-  last_modified: '2026-02-04'
+  last_modified: '2026-04-07'
+  species: Homo sapiens
 structures:
 - id: BAP_0000015
   name: Masseter
@@ -58,7 +59,8 @@ structures:
 - id: BAP_0021811
   name: Pterygoideus lateralis (R)
   parent: BAP_0022023
-  definition: Right muscle of mastication; protrudes mandible and assists lateral movement
+  definition: Right muscle of mastication; protrudes mandible and assists lateral
+    movement
 - id: BAP_0021812
   name: Pterygoideus medialis (L)
   parent: BAP_0022023
@@ -66,7 +68,8 @@ structures:
 - id: BAP_0021813
   name: Pterygoideus medialis (R)
   parent: BAP_0022023
-  definition: Right muscle of mastication; elevates mandible and assists grinding motion
+  definition: Right muscle of mastication; elevates mandible and assists grinding
+    motion
 - id: BAP_0021818
   name: Tensor veli palatini (L)
   parent: BAP_0021705
@@ -194,7 +197,8 @@ structures:
 - id: BAP_0021935
   name: Omohyoideus (R)
   parent: BAP_0021101
-  definition: Right infrahyoid muscle; depresses hyoid bone and stabilizes during speech
+  definition: Right infrahyoid muscle; depresses hyoid bone and stabilizes during
+    speech
 - id: BAP_0021940
   name: Levator palpebrae superioris (L)
   parent: BAP_0012008

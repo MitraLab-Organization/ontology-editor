@@ -1,12 +1,14 @@
 metadata:
   category: regions
-  description: Major body regions and organ system hierarchy
+  description: Major body regions and organ system hierarchy (Human)
   version: 2.0.0
-  last_modified: '2026-02-04'
+  last_modified: '2026-04-07'
+  species: Homo sapiens
+  ncbi_taxon: '9606'
 structures:
 - id: BAP_0012000
   name: Body
-  parent:
+  parent: null
   definition: Root structure for the entire body
 - id: BAP_0000001
   name: Head
@@ -290,7 +292,8 @@ structures:
 - id: BAP_0021992
   name: Salivary glands
   parent: BAP_0020005
-  definition: Glands that produce saliva; includes parotid, submandibular, and sublingual glands
+  definition: Glands that produce saliva; includes parotid, submandibular, and sublingual
+    glands
 - id: BAP_0021722
   name: Parotid glands (L)
   parent: BAP_0021992
@@ -342,11 +345,13 @@ structures:
 - id: BAP_0022027
   name: Harderian gland (L)
   parent: BAP_0022024
-  definition: Left Harderian gland; orbital gland that lubricates the nictitating membrane
+  definition: Left Harderian gland; orbital gland that lubricates the nictitating
+    membrane
 - id: BAP_0022028
   name: Harderian gland (R)
   parent: BAP_0022024
-  definition: Right Harderian gland; orbital gland that lubricates the nictitating membrane
+  definition: Right Harderian gland; orbital gland that lubricates the nictitating
+    membrane
 - id: BAP_0021724
   name: Palatal submucosa (L)
   parent: BAP_0020005
@@ -536,25 +541,25 @@ structures:
   parent: BAP_0020603
   definition: Left middle ear cavity; alternative name Tympanum
   synonyms:
-    - Tympanum (L)
+  - Tympanum (L)
 - id: BAP_0022010
   name: Tympanic cavity (R)
   parent: BAP_0020603
   definition: Right middle ear cavity; alternative name Tympanum
   synonyms:
-    - Tympanum (R)
+  - Tympanum (R)
 - id: BAP_0022011
   name: Eustachian tube (L)
   parent: BAP_0020603
   definition: Left auditory tube connecting middle ear to nasopharynx
   synonyms:
-    - Auditory tube (L)
+  - Auditory tube (L)
 - id: BAP_0022012
   name: Eustachian tube (R)
   parent: BAP_0020603
   definition: Right auditory tube connecting middle ear to nasopharynx
   synonyms:
-    - Auditory tube (R)
+  - Auditory tube (R)
 - id: BAP_0021780
   name: Stapes (L)
   parent: BAP_0021707
