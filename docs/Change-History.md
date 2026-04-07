@@ -1,26 +1,52 @@
 # Change History
 
-**Last Updated:** 2026-03-16 23:14:28 UTC
+**Last Updated:** 2026-04-07 22:11:42 UTC
 
-**Period:** Last 28 commits
+**Period:** Last 30 commits
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| **Total Commits** | 28 |
+| **Total Commits** | 30 |
 | **Active Contributors** | 2 |
-| Structure Changes | 21 |
+| Structure Changes | 23 |
 | Other Changes | 5 |
 | Update Changes | 1 |
 | Relationship Changes | 1 |
 
 ## Contributors
 
-- **Ken**: 25 commit(s)
+- **Ken**: 27 commit(s)
 - **Mivangod**: 3 commit(s)
 
 ## Recent Changes
+
+
+### 2026-04-07 (2 commits)
+
+#### 📦 feat: transition to BAP Human Hand Ontology and update structure definitions
+
+*By Ken at 22:11 · [`c45f0e6`](../../commit/c45f0e687eebf23796b823fdebc60f73c27b8d09)*
+
+- ✏️ Modified 1 file(s)
+
+**Files changed:**
+- `structures/body_regions.yaml`
+
+#### 📦 feat: transition to human head ontology and update structure relationships
+
+*By Ken at 21:47 · [`28ee339`](../../commit/28ee339f636c06d3aca07ce7488016985488f539)*
+
+- ✏️ Modified 9 file(s)
+
+**Files changed:**
+- `relationships/blood_supply.yaml`
+- `relationships/developmental.yaml`
+- `relationships/innervation.yaml`
+- `structures/body_regions.yaml`
+- `structures/brain.yaml`
+- *...and 4 more*
 
 
 ### 2026-03-16 (2 commits)
