@@ -10,14 +10,14 @@ name: Validate Ontology
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, hand]
     paths:
       - 'structures/**'
       - 'relationships/**'
       - 'schemas/**'
   
   push:
-    branches: [main]
+    branches: [main, hand]
     paths:
       - 'structures/**'
       - 'relationships/**'
@@ -108,10 +108,12 @@ jobs:
         if: steps.validate.outcome == 'failure'
         run: exit 1
 
-  # Update README after merge to main
+  # Update README after push to main or hand
   update-readme:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: |
+      github.event_name == 'push' &&
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/hand')
     
     steps:
       - name: Checkout
