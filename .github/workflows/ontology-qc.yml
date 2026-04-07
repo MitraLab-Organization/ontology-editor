@@ -3,6 +3,7 @@
 #
 # Checks:
 #   1) robot convert — ontology loads and serializes (parse / structural sanity)
+#      Use .ttl (Turtle); extension .nt is not a recognised output format in ROBOT 1.x.
 #   2) robot validate-profile DL — OWL 2 DL profile (typical target for reasoning tools)
 
 name: Ontology QC
@@ -32,6 +33,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: obolibrary/odkfull:v1.6
+    env:
+      ROBOT_JAVA_ARGS: -Xmx6G
 
     steps:
       - name: Checkout
@@ -47,7 +50,7 @@ jobs:
 
       - name: ROBOT convert (load and round-trip)
         run: |
-          robot convert --input build/bap-generated.owl --output build/bap-generated.nt
+          robot convert --input build/bap-generated.owl --output build/bap-generated.ttl
 
       - name: ROBOT validate-profile (OWL 2 DL)
         run: |
