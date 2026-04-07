@@ -228,6 +228,24 @@ for use in WebProtégé and other tools.
 ```
 <!-- STATS_END -->
 
+## Current Hierarchy
+
+<!-- HIERARCHY_START -->
+```
+(Push ontology YAML or run: python scripts/generate_tree.py --update-readme --stats)
+```
+<!-- HIERARCHY_END -->
+
+## Relationships
+
+<!-- MERMAID_START -->
+
+<!-- MERMAID_END -->
+
+<!-- TABLES_START -->
+
+<!-- TABLES_END -->
+
 ## Getting Started
 
 ### Add Structures via Issue Templates
