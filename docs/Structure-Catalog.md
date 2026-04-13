@@ -1,16 +1,26 @@
 # Complete Structure Catalog
 
-**Total Structures:** 2,861
+**Total Structures:** 2,920
 
 This page lists all anatomical structures in the BAP ontology with complete details.
 
 ## Structures by System
 
 
-### Body Regions (265 structures)
+### Body Regions (324 structures)
 
 | ID | Name | Parent | Definition |
 |----|------|--------|------------|
+| `BAP_0099001` | **A1 (L)** | Whiskers | Left A1 whisker |
+| `BAP_0099002` | **A1 (R)** | Whiskers | Right A1 whisker |
+| `BAP_0099003` | **A2 (L)** | Whiskers | Left A2 whisker |
+| `BAP_0099004` | **A2 (R)** | Whiskers | Right A2 whisker |
+| `BAP_0099005` | **A3 (L)** | Whiskers | Left A3 whisker |
+| `BAP_0099006` | **A3 (R)** | Whiskers | Right A3 whisker |
+| `BAP_0099007` | **A4 (L)** | Whiskers | Left A4 whisker |
+| `BAP_0099008` | **A4 (R)** | Whiskers | Right A4 whisker |
+| `BAP_0099009` | **A5 (L)** | Whiskers | Left A5 whisker |
+| `BAP_0099010` | **A5 (R)** | Whiskers | Right A5 whisker |
 | `BAP_0021742` | **Abdomen (L)** | Trunk | Left abdominal region of the trunk |
 | `BAP_0021743` | **Abdomen (R)** | Trunk | Right abdominal region of the trunk |
 | `BAP_0021916` | **Acromiotrapezius (L)** | Trapezius | Left acromial part of trapezius muscle |
@@ -29,12 +39,36 @@ This page lists all anatomical structures in the BAP ontology with complete deta
 | `BAP_0021955` | **Auricularis posterior (R)** | External Ear Muscles | Right posterior auricular muscle; retracts ear |
 | `BAP_0021958` | **Auricularis superior (L)** | External Ear Muscles | Left superior auricular muscle; elevates ear |
 | `BAP_0021959` | **Auricularis superior (R)** | External Ear Muscles | Right superior auricular muscle; elevates ear |
+| `BAP_0099011` | **B1 (L)** | Whiskers | Left B1 whisker |
+| `BAP_0099012` | **B1 (R)** | Whiskers | Right B1 whisker |
+| `BAP_0099013` | **B2 (L)** | Whiskers | Left B2 whisker |
+| `BAP_0099014` | **B2 (R)** | Whiskers | Right B2 whisker |
+| `BAP_0099015` | **B3 (L)** | Whiskers | Left B3 whisker |
+| `BAP_0099016` | **B3 (R)** | Whiskers | Right B3 whisker |
+| `BAP_0099017` | **B4 (L)** | Whiskers | Left B4 whisker |
+| `BAP_0099018` | **B4 (R)** | Whiskers | Right B4 whisker |
+| `BAP_0099019` | **B5 (L)** | Whiskers | Left B5 whisker |
+| `BAP_0099020` | **B5 (R)** | Whiskers | Right B5 whisker |
 | `BAP_0021752` | **Basisphenoid (L)** | Neurocranium | Left basisphenoid bone; part of cranial base |
 | `BAP_0021753` | **Basisphenoid (R)** | Neurocranium | Right basisphenoid bone; part of cranial base |
 | `BAP_0012000` | **Body** | (root) | Root structure for the entire body |
 | `BAP_0012004` | **Brain** | Head central nervous system | Central nervous system organ in the head |
 | `BAP_0021854` | **Buccinatorius (L)** | Muscles of facial expression | Left cheek muscle; compresses cheek |
 | `BAP_0021855` | **Buccinatorius (R)** | Muscles of facial expression | Right cheek muscle; compresses cheek |
+| `BAP_0099021` | **C1 (L)** | Whiskers | Left C1 whisker |
+| `BAP_0099022` | **C1 (R)** | Whiskers | Right C1 whisker |
+| `BAP_0099023` | **C2 (L)** | Whiskers | Left C2 whisker |
+| `BAP_0099024` | **C2 (R)** | Whiskers | Right C2 whisker |
+| `BAP_0099025` | **C3 (L)** | Whiskers | Left C3 whisker |
+| `BAP_0099026` | **C3 (R)** | Whiskers | Right C3 whisker |
+| `BAP_0099027` | **C4 (L)** | Whiskers | Left C4 whisker |
+| `BAP_0099028` | **C4 (R)** | Whiskers | Right C4 whisker |
+| `BAP_0099029` | **C5 (L)** | Whiskers | Left C5 whisker |
+| `BAP_0099030` | **C5 (R)** | Whiskers | Right C5 whisker |
+| `BAP_0099031` | **C6 (L)** | Whiskers | Left C6 whisker |
+| `BAP_0099032` | **C6 (R)** | Whiskers | Right C6 whisker |
+| `BAP_0099033` | **C7 (L)** | Whiskers | Left C7 whisker |
+| `BAP_0099034` | **C7 (R)** | Whiskers | Right C7 whisker |
 | `BAP_0021888` | **Ceratohyoideus (L)** | Muscles of facial expression | Left muscle of hyoid apparatus |
 | `BAP_0021889` | **Ceratohyoideus (R)** | Muscles of facial expression | Right muscle of hyoid apparatus |
 | `BAP_0021796` | **Clavicle (L)** | Forelimb | Left collarbone |
@@ -64,55 +98,21 @@ This page lists all anatomical structures in the BAP ontology with complete deta
 | `BAP_0021793` | **Cricoid cartilage (R)** | Laryngeal skeletal system | Right ring-shaped laryngeal cartilage |
 | `BAP_0021926` | **Cricothyroideus (L)** | Neck muscles | Left muscle connecting cricoid to thyroid cartilage; tenses vocal folds |
 | `BAP_0021927` | **Cricothyroideus (R)** | Neck muscles | Right muscle connecting cricoid to thyroid cartilage; tenses vocal folds |
-| `BAP_0021802` | **Deep masseter (L)** | Masseter | Left deep portion of masseter; elevates mandible with vertical force |
-| `BAP_0021803` | **Deep masseter (R)** | Masseter | Right deep portion of masseter; elevates mandible with vertical force |
-| `BAP_0021862` | **Depressor rhinarii (L)** | Muscles of facial expression | Left muscle that depresses rhinarium |
-| `BAP_0021863` | **Depressor rhinarii (R)** | Muscles of facial expression | Right muscle that depresses rhinarium |
-| `BAP_0021860` | **Depressor septi nasi (L)** | Muscles of facial expression | Left muscle that depresses nasal septum |
-| `BAP_0021861` | **Depressor septi nasi (R)** | Muscles of facial expression | Right muscle that depresses nasal septum |
-| `BAP_0021816` | **Digastricus anterior (L)** | Muscles of facial expression | Left muscle that depresses mandible |
-| `BAP_0021817` | **Digastricus anterior (R)** | Muscles of facial expression | Right muscle that depresses mandible |
-| `BAP_0021856` | **Dilatator nasi (L)** | Muscles of facial expression | Left nasal dilator muscle; widens nostril |
-| `BAP_0021857` | **Dilatator nasi (R)** | Muscles of facial expression | Right nasal dilator muscle; widens nostril |
-| `BAP_0020603` | **Ear Cavities** | Head cavities and passages | Anatomical passages and spaces of the ear |
-| `BAP_0021754` | **Ethmoid (L)** | Neurocranium | Left ethmoid bone; forms part of nasal cavity and orbit |
-| `BAP_0021755` | **Ethmoid (R)** | Neurocranium | Right ethmoid bone; forms part of nasal cavity and orbit |
-| `BAP_0022011` | **Eustachian tube (L)** | Ear Cavities | Left auditory tube connecting middle ear to nasopharynx |
-| `BAP_0022012` | **Eustachian tube (R)** | Ear Cavities | Right auditory tube connecting middle ear to nasopharynx |
-| `BAP_0012010` | **External Ear Muscles** | Muscles of facial expression | Muscles controlling pinna movement and positioning |
-| `BAP_0021776` | **External acoustic meatus (L)** | Ear Cavities | Left external ear canal |
-| `BAP_0021777` | **External acoustic meatus (R)** | Ear Cavities | Right external ear canal |
-| `BAP_0020702` | **External ear** | Head integumentary system | Pinna and external acoustic structures |
-| `BAP_0021998` | **Extraorbital lacrimal gland (L)** | Lacrimal gland | Left extraorbital portion of the lacrimal gland that produces tears |
-| `BAP_0021999` | **Extraorbital lacrimal gland (R)** | Lacrimal gland | Right extraorbital portion of the lacrimal gland that produces tears |
-| `BAP_0021708` | **Eye (L)** | Sense organs | Left visual organ |
-| `BAP_0021709` | **Eye (R)** | Sense organs | Right visual organ |
-| `BAP_0012008` | **Eye Muscles** | Cranial muscles | Extraocular and eyelid muscles controlling eye movement and eyelid function |
-| `BAP_0000004` | **Forelimb** | Appendages |  |
-| `BAP_0021868` | **Frontalis (L)** | Muscles of facial expression | Left frontal muscle; raises eyebrows |
-| `BAP_0021869` | **Frontalis (R)** | Muscles of facial expression | Right frontal muscle; raises eyebrows |
-| `BAP_0021930` | **Geniohyoideus (L)** | Muscles of facial expression | Left muscle connecting chin to hyoid bone; elevates hyoid |
-| `BAP_0021931` | **Geniohyoideus (R)** | Muscles of facial expression | Right muscle connecting chin to hyoid bone; elevates hyoid |
-| `BAP_0021716` | **Gustatory epithelium (L)** | Sense organs | Left sensory epithelium for taste |
-| `BAP_0021717` | **Gustatory epithelium (R)** | Sense organs | Right sensory epithelium for taste |
-| `BAP_0022027` | **Harderian gland (L)** | Lacrimal gland | Left Harderian gland; orbital gland that lubricates the nictitating membrane |
-| `BAP_0022028` | **Harderian gland (R)** | Lacrimal gland | Right Harderian gland; orbital gland that lubricates the nictitating membrane |
-| `BAP_0000001` | **Head** | Body | Head region of the mouse |
-| `BAP_0020006` | **Head cavities and passages** | Head | Anatomical spaces and passages of the head |
-| `BAP_0020202` | **Head central nervous system** | Head nervous system | Central nervous system structures in the head |
-| `BAP_0020005` | **Head endocrine and exocrine system** | Head | Glandular structures of the head |
-| `BAP_0020007` | **Head integumentary system** | Head | Skin and external structures of the head |
-| `BAP_0021720` | **Head lymphatics (L)** | Head vascular system | Left lymphatic structures of the head |
-| `BAP_0021721` | **Head lymphatics (R)** | Head vascular system | Right lymphatic structures of the head |
-| `BAP_0020001` | **Head musculoskeletal system** | Head | Musculoskeletal structures of the head including muscles and cranium |
-| `BAP_0020002` | **Head nervous system** | Head | Neural structures of the head |
-| `BAP_0020201` | **Head peripheral nervous system** | Head nervous system | Peripheral nerves of the head |
-| `BAP_0021728` | **Head skin (L)** | Head integumentary system | Left skin covering the head |
-| `BAP_0021729` | **Head skin (R)** | Head integumentary system | Right skin covering the head |
-| `BAP_0020004` | **Head vascular system** | Head | Blood vessels and lymphatics of the head |
-| `BAP_0021746` | **Hindlimb (L)** | Appendages | Left posterior limb |
+| `BAP_0099035` | **D1 (L)** | Whiskers | Left D1 whisker |
+| `BAP_0099036` | **D1 (R)** | Whiskers | Right D1 whisker |
+| `BAP_0099037` | **D2 (L)** | Whiskers | Left D2 whisker |
+| `BAP_0099038` | **D2 (R)** | Whiskers | Right D2 whisker |
+| `BAP_0099039` | **D3 (L)** | Whiskers | Left D3 whisker |
+| `BAP_0099040` | **D3 (R)** | Whiskers | Right D3 whisker |
+| `BAP_0099041` | **D4 (L)** | Whiskers | Left D4 whisker |
+| `BAP_0099042` | **D4 (R)** | Whiskers | Right D4 whisker |
+| `BAP_0099043` | **D5 (L)** | Whiskers | Left D5 whisker |
+| `BAP_0099044` | **D5 (R)** | Whiskers | Right D5 whisker |
+| `BAP_0099045` | **D6 (L)** | Whiskers | Left D6 whisker |
+| `BAP_0099046` | **D6 (R)** | Whiskers | Right D6 whisker |
+| `BAP_0099047` | **D7 (L)** | Whiskers | Left D7 whisker |
 
-*...and 165 more*
+*...and 224 more*
 
 ### Brain (2479 structures)
 

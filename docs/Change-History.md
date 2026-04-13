@@ -1,26 +1,38 @@
 # Change History
 
-**Last Updated:** 2026-03-16 23:14:28 UTC
+**Last Updated:** 2026-04-13 18:01:53 UTC
 
-**Period:** Last 28 commits
+**Period:** Last 29 commits
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| **Total Commits** | 28 |
+| **Total Commits** | 29 |
 | **Active Contributors** | 2 |
-| Structure Changes | 21 |
+| Structure Changes | 22 |
 | Other Changes | 5 |
 | Update Changes | 1 |
 | Relationship Changes | 1 |
 
 ## Contributors
 
-- **Ken**: 25 commit(s)
+- **Ken**: 26 commit(s)
 - **Mivangod**: 3 commit(s)
 
 ## Recent Changes
+
+
+### 2026-04-13 (1 commits)
+
+#### 📦 feat: expand whisker structure definitions in body regions
+
+*By Ken at 18:01 · [`ad65a5b`](../../commit/ad65a5b75d4a65462c3094e2a0b2213e227abd85)*
+
+- ✏️ Modified 1 file(s)
+
+**Files changed:**
+- `structures/body_regions.yaml`
 
 
 ### 2026-03-16 (2 commits)
