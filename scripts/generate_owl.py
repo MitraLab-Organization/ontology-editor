@@ -5,7 +5,7 @@ BAP OWL Generator
 Generates OWL/RDF XML files from YAML structure and relationship definitions.
 
 Usage:
-    python scripts/generate_owl.py --output bap-mousehead.owl
+    python scripts/generate_owl.py --output bap-marmoset.owl
 """
 
 import sys
@@ -55,10 +55,10 @@ OBO_RELATIONS = {
 IAO_DEFINITION = 'http://purl.obolibrary.org/obo/IAO_0000115'
 
 # Ontology metadata
-BASE_IRI = "http://purl.obolibrary.org/obo/bap.owl"
-TITLE = "BAP Mouse Head Atlas"
-DESCRIPTION = "Brain Architecture Project Mouse Head Anatomical Atlas"
-VERSION = "1.0.0"
+BASE_IRI = "http://purl.obolibrary.org/obo/mmo.owl"
+TITLE = "BAP Marmoset Head Atlas"
+DESCRIPTION = "Brain Architecture Project anatomical atlas for the common marmoset (Callithrix jacchus)"
+VERSION = "2026-10-05"
 
 
 # ============================================================================
@@ -240,7 +240,7 @@ def generate_owl(structures: Dict[str, dict], relationships: List[dict]) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description="Generate OWL from YAML definitions")
-    parser.add_argument("--output", "-o", default="bap-mousehead.owl", help="Output file path")
+    parser.add_argument("--output", "-o", default="bap-marmoset.owl", help="Output file path")
     parser.add_argument("--validate", "-v", action="store_true", help="Validate XML output")
     args = parser.parse_args()
     

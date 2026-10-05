@@ -1607,7 +1607,7 @@ structures:
   xref: MARMOSET:183
 
 - id: BAP_1010184
-  name: Extended amygdala
+  name: Extended amygdala (EA)
   parent: BAP_1010183
   abbreviation: 'EA'
   xref: MARMOSET:184
@@ -1757,7 +1757,7 @@ structures:
   color_rgb: '84,129,25'
 
 - id: BAP_1010219
-  name: Substantia nigra
+  name: Substantia nigra (basal ganglia)
   parent: BAP_1010166
   abbreviation: 'SNBG'
   xref: MARMOSET:219
@@ -3174,7 +3174,7 @@ structures:
   xref: MARMOSET:581
 
 - id: BAP_1010582
-  name: Nucleus of the spinal trigeminal tract
+  name: Nucleus of the spinal trigeminal tract (medulla oblongata)
   parent: BAP_1010545
   abbreviation: 'Sp5MED'
   xref: MARMOSET:582
@@ -3231,7 +3231,7 @@ structures:
   xref: MARMOSET:590
 
 - id: BAP_1010591
-  name: Raphe nuclei
+  name: Raphe nuclei (medulla oblongata)
   parent: BAP_1010545
   abbreviation: 'RaMED'
   xref: MARMOSET:591
@@ -3250,7 +3250,7 @@ structures:
   xref: MARMOSET:593
 
 - id: BAP_1010594
-  name: Reticular formation
+  name: Reticular formation (medulla oblongata)
   parent: BAP_1010545
   abbreviation: 'RtMED'
   xref: MARMOSET:594
@@ -3434,7 +3434,7 @@ structures:
   color_rgb: '254,179,190'
 
 - id: BAP_1010624
-  name: Vestibular nuclei
+  name: Vestibular nuclei (medulla oblongata)
   parent: BAP_1010545
   abbreviation: 'VeMED'
   xref: MARMOSET:624
@@ -3502,7 +3502,7 @@ structures:
   color_rgb: '222,56,56'
 
 - id: BAP_1010514
-  name: Raphe nuclei
+  name: Raphe nuclei (pons)
   parent: BAP_1010466
   abbreviation: 'RaPONS'
   xref: MARMOSET:514
@@ -3516,7 +3516,7 @@ structures:
   color_rgb: '224,58,127'
 
 - id: BAP_1010440
-  name: Dorsal raphe nucleus; caudal part
+  name: Dorsal raphe nucleus; caudal part (pons)
   parent: BAP_1010514
   abbreviation: 'DRC'
   xref: MARMOSET:440
@@ -3552,7 +3552,7 @@ structures:
   xref: MARMOSET:521
 
 - id: BAP_1010522
-  name: Reticular formation
+  name: Reticular formation (pons)
   parent: BAP_1010466
   abbreviation: 'RtPONS'
   xref: MARMOSET:522
@@ -3690,7 +3690,7 @@ structures:
   color_rgb: '131,75,93'
 
 - id: BAP_1010544
-  name: Vestibular nuclei
+  name: Vestibular nuclei (pons)
   parent: BAP_1010466
   abbreviation: 'VePONS'
   xref: MARMOSET:544
@@ -3927,7 +3927,7 @@ structures:
   xref: MARMOSET:502
 
 - id: BAP_1010503
-  name: Nucleus of the spinal trigeminal tract
+  name: Nucleus of the spinal trigeminal tract (pons)
   parent: BAP_1010466
   abbreviation: 'Sp5PONS'
   xref: MARMOSET:503
@@ -4247,7 +4247,7 @@ structures:
   xref: MARMOSET:437
 
 - id: BAP_1010438
-  name: Raphe nuclei
+  name: Raphe nuclei (midbrain)
   parent: BAP_1010399
   abbreviation: 'RaMID'
   xref: MARMOSET:438
@@ -4268,7 +4268,7 @@ structures:
   color_rgb: '184,142,145'
 
 - id: BAP_1010516
-  name: Dorsal raphe nucleus; caudal part
+  name: Dorsal raphe nucleus; caudal part (midbrain)
   parent: BAP_1010439
   abbreviation: 'DRC'
   xref: MARMOSET:516
@@ -4304,7 +4304,7 @@ structures:
   xref: MARMOSET:445
 
 - id: BAP_1010447
-  name: Reticular formation
+  name: Reticular formation (midbrain)
   parent: BAP_1010399
   abbreviation: 'RtMID'
   xref: MARMOSET:447
@@ -4394,7 +4394,7 @@ structures:
   xref: MARMOSET:460
 
 - id: BAP_1010461
-  name: Substantia nigra
+  name: Substantia nigra (midbrain)
   parent: BAP_1010399
   abbreviation: 'SNMID'
   xref: MARMOSET:461
