@@ -18,7 +18,7 @@ Changes are validated automatically via GitHub Actions and generate OWL files fo
 <!-- STATS_START -->
 📊 **Ontology Statistics**
 ```
-├── Structures: 2940
+├── Structures: 2949
 ├── Hierarchy depth: 15 levels
 └── Relationships: 89
     ├── Innervated By: 78
@@ -33,10 +33,11 @@ Changes are validated automatically via GitHub Actions and generate OWL files fo
 ```
 Body
 ├── Appendages
-│   ├── Forelimb
+│   ├── Forelimb (L)
 │   │   ├── Clavicle (L)
+│   │   └── Scapula (L)
+│   ├── Forelimb (R)
 │   │   ├── Clavicle (R)
-│   │   ├── Scapula (L)
 │   │   └── Scapula (R)
 │   ├── Hindlimb (L)
 │   ├── Hindlimb (R)
@@ -53,6 +54,12 @@ Body
 │   │   │   ├── Tympanic cavity (L)
 │   │   │   └── Tympanic cavity (R)
 │   │   ├── Nasal cavity
+│   │   │   ├── Ethmoturbinate (L)
+│   │   │   ├── Ethmoturbinate (R)
+│   │   │   ├── Maxilloturbinate (L)
+│   │   │   ├── Maxilloturbinate (R)
+│   │   │   ├── Nasoturbinate (L)
+│   │   │   └── Nasoturbinate (R)
 │   │   ├── Oral cavity
 │   │   ├── Paranasal sinuses (L)
 │   │   └── Paranasal sinuses (R)
@@ -101,6 +108,8 @@ Body
 │   │   │   ├── Eye Muscles
 │   │   │   │   ├── Inferior oblique (L)
 │   │   │   │   ├── Inferior oblique (R)
+│   │   │   │   ├── Inferior rectus (L)
+│   │   │   │   ├── Inferior rectus (R)
 │   │   │   │   ├── Lateral rectus (L)
 │   │   │   │   ├── Lateral rectus (R)
 │   │   │   │   ├── Levator palpebrae superioris (L)
