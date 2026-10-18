@@ -60,6 +60,31 @@ TITLE = "BAP Mouse Head Atlas"
 DESCRIPTION = "Brain Architecture Project Mouse Head Anatomical Atlas"
 VERSION = "1.0.0"
 
+# ============================================================================
+# Export Profiles
+# ============================================================================
+
+EXPORT_PROFILES = {
+    "default": {
+        "name": "BAP Ontology Editor (default)",
+        "base_iri": "http://purl.obolibrary.org/obo/bap.owl",
+        "xmlns": "http://purl.obolibrary.org/obo/bap.owl#",
+        "title": "BAP Mouse Head Atlas",
+        "description": "Brain Architecture Project Mouse Head Anatomical Atlas",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "version": "1.0.0",
+    },
+    "webprotege": {
+        "name": "WebProtege-compatible",
+        "base_iri": "http://purl.obolibrary.org/obo/",
+        "xmlns": "http://purl.obolibrary.org/obo/#",
+        "title": "BAP Mouse Head Atlas Anatomical Atlas",
+        "description": "Anatomical atlas ontology for Mouse (Mus musculus)",
+        "license": "https://creativecommons.org/licenses/unspecified",
+        "version": "",
+    },
+}
+
 
 # ============================================================================
 # Data Loading
@@ -129,26 +154,34 @@ def get_relation_iri(predicate: str) -> str:
     return OBO_RELATIONS.get(predicate, f"{BASE_IRI}#{predicate}")
 
 
-def generate_owl(structures: Dict[str, dict], relationships: List[dict]) -> str:
+def generate_owl(structures: Dict[str, dict], relationships: List[dict], profile: str = "default") -> str:
     """Generate complete OWL/RDF XML document."""
+    prof = EXPORT_PROFILES[profile]
+    base_iri = prof["base_iri"]
+    xmlns = prof["xmlns"]
+    title = prof["title"]
+    description = prof["description"]
+    license_url = prof["license"]
+    version = prof["version"]
+
     lines = []
     
     # XML declaration
     lines.append('<?xml version="1.0"?>')
     
     # RDF root with namespaces
-    lines.append(f'<rdf:RDF xmlns="{BASE_IRI}#"')
-    lines.append(f'     xml:base="{BASE_IRI}"')
+    lines.append(f'<rdf:RDF xmlns="{xmlns}"')
+    lines.append(f'     xml:base="{base_iri}"')
     for prefix, uri in sorted(NAMESPACES.items()):
         lines.append(f'     xmlns:{prefix}="{uri}"')
     lines[-1] = lines[-1] + '>'
     
     # Ontology metadata
-    lines.append(f'    <owl:Ontology rdf:about="{BASE_IRI}">')
-    lines.append(f'        <dcterms:title>{escape_xml(TITLE)}</dcterms:title>')
-    lines.append(f'        <dcterms:description>{escape_xml(DESCRIPTION)}</dcterms:description>')
-    lines.append(f'        <owl:versionInfo>{VERSION}</owl:versionInfo>')
-    lines.append('        <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>')
+    lines.append(f'    <owl:Ontology rdf:about="{base_iri}">')
+    lines.append(f'        <dcterms:title>{escape_xml(title)}</dcterms:title>')
+    lines.append(f'        <dcterms:description>{escape_xml(description)}</dcterms:description>')
+    lines.append(f'        <dcterms:license rdf:resource="{license_url}"/>')
+    lines.append(f'        <owl:versionInfo>{version}</owl:versionInfo>')
     lines.append('    </owl:Ontology>')
     lines.append('')
     
@@ -239,10 +272,25 @@ def generate_owl(structures: Dict[str, dict], relationships: List[dict]) -> str:
 # ============================================================================
 
 def main():
+    profiles = list(EXPORT_PROFILES.keys())
     parser = argparse.ArgumentParser(description="Generate OWL from YAML definitions")
     parser.add_argument("--output", "-o", default="bap-mousehead.owl", help="Output file path")
+    parser.add_argument("--profile", "-p", choices=profiles, default="default",
+                        help=f"Export profile: {', '.join(profiles)} (default: default)")
     parser.add_argument("--validate", "-v", action="store_true", help="Validate XML output")
+    parser.add_argument("--list-profiles", action="store_true", help="List available profiles")
     args = parser.parse_args()
+
+    if args.list_profiles:
+        print("Available export profiles:")
+        for name, prof in EXPORT_PROFILES.items():
+            print(f"  {name:15s} - {prof['name']}")
+            print(f"                  IRI: {prof['base_iri']}")
+        return 0
+    
+    prof = EXPORT_PROFILES[args.profile]
+    print(f"Profile: {prof['name']}")
+    print(f"  IRI: {prof['base_iri']}")
     
     print("Loading structures...")
     structures = load_all_structures()
@@ -253,7 +301,7 @@ def main():
     print(f"  Loaded {len(relationships)} relationships")
     
     print("Generating OWL...")
-    owl_content = generate_owl(structures, relationships)
+    owl_content = generate_owl(structures, relationships, profile=args.profile)
     
     # Validate XML if requested
     if args.validate:
