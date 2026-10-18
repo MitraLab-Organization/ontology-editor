@@ -118,6 +118,30 @@ structures:
   name: Nasal cavity
   parent: BAP_0020006
   definition: Nasal passage
+- id: BAP_0099144
+  name: Ethmoturbinate (L)
+  parent: BAP_0000010
+  definition: Left ethmoid turbinate of the nasal cavity
+- id: BAP_0099145
+  name: Ethmoturbinate (R)
+  parent: BAP_0000010
+  definition: Right ethmoid turbinate of the nasal cavity
+- id: BAP_0099146
+  name: Maxilloturbinate (L)
+  parent: BAP_0000010
+  definition: Left maxillary turbinate of the nasal cavity
+- id: BAP_0099147
+  name: Maxilloturbinate (R)
+  parent: BAP_0000010
+  definition: Right maxillary turbinate of the nasal cavity
+- id: BAP_0099148
+  name: Nasoturbinate (L)
+  parent: BAP_0000010
+  definition: Left nasal turbinate of the nasal cavity
+- id: BAP_0099149
+  name: Nasoturbinate (R)
+  parent: BAP_0000010
+  definition: Right nasal turbinate of the nasal cavity
 - id: BAP_0020603
   name: Ear Cavities
   parent: BAP_0020006

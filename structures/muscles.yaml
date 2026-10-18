@@ -373,6 +373,14 @@ structures:
   name: Superior rectus (R)
   parent: BAP_0012008
   definition: Right extraocular muscle; elevates and adducts the eye
+- id: BAP_0099150
+  name: Inferior rectus (L)
+  parent: BAP_0012008
+  definition: Left extraocular muscle; depresses and adducts the eye
+- id: BAP_0099151
+  name: Inferior rectus (R)
+  parent: BAP_0012008
+  definition: Right extraocular muscle; depresses and adducts the eye
 - id: BAP_0021968
   name: Trochlear nerve (L)
   parent: BAP_0012006
